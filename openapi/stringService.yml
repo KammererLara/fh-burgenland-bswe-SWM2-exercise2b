@@ -1,0 +1,69 @@
+---
+openapi: 3.0.3
+info:
+  title: String Converter
+  description: |-
+    This service performs basic conversions.
+  version: 1.0.0
+tags:
+  - name: strings
+    description: Basic string operations.
+paths:
+  /upper:
+    get:
+#      für logische zugehörigkeit
+      tags:
+        - strings
+      summary: get uppercase string
+      description: Returns string in uppercase
+      operationId: upper
+      parameters:
+#          parametername
+        - name: string
+#          RequestParam ist immer query parameter
+          in: query
+          required: true
+          schema:
+            type: string
+          example: Dog
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: DOG
+  /lower/{text}:
+    get:
+      tags:
+        - strings
+      summary: get lowercase string
+      description: Returns string in lowercase
+      operationId: lower
+      parameters:
+        - name: text
+          in: path
+          required: true
+          schema:
+            type: string
+          example: Dog
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: dog
+
+#  Beispiele
+#  http://..../upper?string=Dog ...QueryParameter
+#  http://..../lower/Dog        ...Pfadparameter
+
+#$ref: '#/components/schemas/Pet' um das Json von Pet von weiter unten zu verwenden
+#steht dann weiter unten unter:
+#components:
+#  schemas:
+#    Pet:
+#      und hier drin wieder mit der selben unterteilung die Pet-Komponenten
